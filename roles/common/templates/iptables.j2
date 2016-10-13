@@ -6,7 +6,7 @@
 :OUTPUT ACCEPT [0:0]
 
 {% if (inventory_hostname in groups[group_webservers]) or (inventory_hostname in groups[group_monitoring]) %}
--A INPUT -p tcp  --dport {{ http_port }} -j ACCEPT
+-A INPUT -p tcp  --dport {{ webserver_port }} -j ACCEPT
 {% endif %}
 
 {% if (inventory_hostname in groups[group_dbservers]) %}
