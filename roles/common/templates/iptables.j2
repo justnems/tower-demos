@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+# This file is ansible-managed
 # Manual customization of this file is not recommended.
 *filter
 :INPUT ACCEPT [0:0]
@@ -6,7 +6,7 @@
 :OUTPUT ACCEPT [0:0]
 
 {% if (inventory_hostname in groups.webservers) or (inventory_hostname in groups.monitoring) %}
--A INPUT -p tcp  --dport 80 -j ACCEPT
+-A INPUT -p tcp  --dport {{ webserver_port }} -j ACCEPT
 {% endif %}
 
 {% if (inventory_hostname in groups.dbservers) %}
