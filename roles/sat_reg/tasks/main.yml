@@ -1,0 +1,23 @@
+---
+# This role contains common plays that will run on all nodes.
+
+- name: Enable plugin
+  template: src=product-id.conf.j2 dest=/etc/yum/pluginconf.d/product-id.conf owner=root mode=0644
+
+- name: Install Bootstrap
+  yum: name=http://satdemo.sales.ansible.com/pub/katello-ca-consumer-latest.noarch.rpm state=present
+  
+- name: Register to the Satellite
+  redhat_subscription: state=present activationkey=ak-Reg_To_Library_RHEL_6 server_hostname=satdemo.sales.ansible.com org_id=RedHat autosubscribe=yes
+    
+- name: Remove Amazon RHUI Client
+  yum: name=rh-amazon-rhui-client state=absent
+
+- name: update subscription-manager
+  yum: name=subscription-manager state=latest
+
+- name: Attach all subscriptions
+  command: /usr/sbin/subscription-manager attach
+
+- name: Install Katello Agent
+  yum: name=katello-agent state=present
