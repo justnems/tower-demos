@@ -4,3 +4,35 @@
 httpd_port: 80
 ntpserver: 192.168.1.2
 webserver_port: 8080
+
+#General
+httpd_port: 80
+ntpserver: 192.168.1.2
+
+#JBoss Webserver
+jboss_http_port: 8080
+jboss_https_port: 4443
+
+#DB
+mysqlservice: mysqld
+mysql_port: 3306
+dbuser: root
+dbname: foodb
+upassword: abc
+
+# LB
+mode: http
+listenport: 8888
+daemonname: myapplb
+balance: roundrobin 
+iface: '{{ ansible_default_ipv4.interface }}'
+
+#Group Names
+group_dbservers: tag_ansible_group_dbservers
+group_lbservers: tag_ansible_group_lbservers
+group_monitoring: tag_ansible_group_monitoring
+group_webservers: tag_ansible_group_webservers
+
+#App
+repository: https://github.com/bennojoy/mywebapp.git
+webapp_version: 351e47276cc66b018f4890a04709d4cc3d3edb0d

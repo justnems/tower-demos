@@ -37,5 +37,8 @@
     - lbservers.cfg
   notify: restart nagios
 
+- name: Turn SELinux enforcing off
+  selinux: state=permissive policy=targeted
+
 - name: start nagios
   service: name=nagios state=started enabled=yes

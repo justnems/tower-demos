@@ -33,4 +33,9 @@
 
 - name: Enable JBoss to be started at boot
   service: name=jboss enabled=yes state=started 
-  
+
+- name: insert firewalld rule for jboss http
+  firewalld: port={{ jboss_http_port }}/tcp permanent=true state=enabled immediate=yes  
+
+- name: insert firewalld rule for jboss https
+  firewalld: port={{ jboss_https_port }}/tcp permanent=true state=enabled immediate=yes  
