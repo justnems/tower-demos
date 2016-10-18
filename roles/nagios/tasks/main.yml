@@ -40,5 +40,8 @@
 - name: Turn SELinux enforcing off
   selinux: state=permissive policy=targeted
 
+- name: Create missing Nagios directory
+  file: path=/var/log/nagios/rw state=directory seuser=system_u serole=object_r setype=nagios_log_t selevel=s0 mode=755 owner=nagios group=nagios
+
 - name: start nagios
   service: name=nagios state=started enabled=yes

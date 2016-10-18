@@ -5,10 +5,10 @@
   yum: name=haproxy state=present
 
 - name: Configure the haproxy cnf file with hosts
-  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  template: src=haproxy.cfg.j2.jboss dest=/etc/haproxy/haproxy.cfg
   notify: restart haproxy
 
-- name: insert firewalld rule for httpd
+- name: insert firewalld rule for haproxy
   firewalld: port={{ listenport }}/tcp permanent=true state=enabled immediate=yes
 
 - name: Turn off SELinux

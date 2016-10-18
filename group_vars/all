@@ -1,13 +1,11 @@
 ---
 # Variables here are applicable to all host groups
 
+
+#Common
 httpd_port: 80
 ntpserver: 192.168.1.2
 webserver_port: 8080
-
-#General
-httpd_port: 80
-ntpserver: 192.168.1.2
 
 #JBoss Webserver
 jboss_http_port: 8080
@@ -36,3 +34,7 @@ group_webservers: tag_ansible_group_webservers
 #App
 repository: https://github.com/bennojoy/mywebapp.git
 webapp_version: 351e47276cc66b018f4890a04709d4cc3d3edb0d
+
+#Webapp
+app_name: webapp
+app_version: v1.1
